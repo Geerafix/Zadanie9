@@ -17,6 +17,9 @@ public class Book {
     @SerializedName("number_of_pages_median")
     private String numberOfPages;
 
+    @SerializedName("subtitle")
+    private String subtitle;
+
     public String getTitle() {
         return title;
     }
@@ -47,6 +50,14 @@ public class Book {
 
     public void setNumberOfPages(String numberOfPages) {
         this.numberOfPages = numberOfPages;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
 }

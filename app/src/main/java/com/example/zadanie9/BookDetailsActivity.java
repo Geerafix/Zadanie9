@@ -13,8 +13,10 @@ public class BookDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK_DETAILS_TITLE = "com.example.BOOK_DETAILS_TITLE";
     public static final String EXTRA_BOOK_DETAILS_AUTHOR = "com.example.BOOK_DETAILS_AUTHOR";
     public static final String EXTRA_BOOK_DETAILS_COVER_ID = "com.example.BOOK_DETAILS_COVERID";
+    public static final String EXTRA_BOOK_DETAILS_SUBTITLE = "com.example.BOOK_DETAILS_SUBTITLE";
     private TextView title;
     private TextView author;
+    private TextView subtitle;
     private ImageView cover;
 
     @Override
@@ -25,10 +27,12 @@ public class BookDetailsActivity extends AppCompatActivity {
         title = findViewById(R.id.title_t);
         author = findViewById(R.id.author_t);
         cover = findViewById(R.id.cover_t);
+        subtitle = findViewById(R.id.subtitle_t);
 
         Intent start = getIntent();
         title.setText(start.getStringExtra(EXTRA_BOOK_DETAILS_TITLE));
         author.setText(start.getStringExtra(EXTRA_BOOK_DETAILS_AUTHOR));
+        subtitle.setText(start.getStringExtra(EXTRA_BOOK_DETAILS_SUBTITLE));
         String coverId = start.getStringExtra(EXTRA_BOOK_DETAILS_COVER_ID);
         if (coverId != null) {
             Picasso.with(this)

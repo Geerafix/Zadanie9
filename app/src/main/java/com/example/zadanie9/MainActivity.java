@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public class BookHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class BookHolder extends RecyclerView.ViewHolder {
         public ImageView bookImage;
         public TextView bookTitle;
         private TextView bookAuthor;
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         public BookHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.book_list_item, parent, false));
-            itemView.setOnClickListener(this);
 
             bookImage = itemView.findViewById(R.id.img_cover);
             bookAuthor = itemView.findViewById(R.id.book_author);
@@ -58,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void bind(Book book) {
+            View itemController = itemView.findViewById(R.id.list_book_item);
+
+            itemController.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
+                intent.putExtra(BookDetailsActivity.EXTRA_BOOK_DETAILS_TITLE, bookTitle.getText());
+                intent.putExtra(BookDetailsActivity.EXTRA_BOOK_DETAILS_AUTHOR, bookAuthor.getText());
+                intent.putExtra(BookDetailsActivity.EXTRA_BOOK_DETAILS_COVER_ID, book.getCover());
+                intent.putExtra(BookDetailsActivity.EXTRA_BOOK_DETAILS_SUBTITLE, book.getSubtitle());
+                
+                startActivity(intent);
+            });
+
             if(book != null && book.getAuthors() != null && checkNullOrEmpty(book.getTitle())) {
                 this.book = book;
                 bookTitle.setText(book.getTitle());
@@ -72,15 +83,6 @@ public class MainActivity extends AppCompatActivity {
                     bookImage.setImageResource(R.drawable.book);
                 }
             }
-        }
-
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
-            intent.putExtra(BookDetailsActivity.EXTRA_BOOK_DETAILS_TITLE, bookTitle.getText());
-            intent.putExtra(BookDetailsActivity.EXTRA_BOOK_DETAILS_AUTHOR, bookAuthor.getText());
-            intent.putExtra(BookDetailsActivity.EXTRA_BOOK_DETAILS_COVER_ID, book.getCover());
-            startActivity(intent);
         }
     }
 

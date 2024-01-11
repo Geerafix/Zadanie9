@@ -8,6 +8,16 @@
     tools:context=".BookDetailsActivity">
 
     <TextView
+        android:id="@+id/subtitle_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_below="@+id/author_t"
+        android:layout_centerHorizontal="true"
+        tools:layout_editor_absoluteX="119dp" />
+
+    <TextView
         android:id="@+id/author_t"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
